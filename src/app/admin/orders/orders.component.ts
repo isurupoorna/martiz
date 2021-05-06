@@ -8,6 +8,7 @@ import { OrderService } from "../service/order.service";
 export class OrdersComponent implements OnInit {
 
   order:any;
+  id:string;
   orderNo: number;
   customerNo: number;
   product: string;
@@ -37,8 +38,27 @@ export class OrdersComponent implements OnInit {
     })
   }
 
-  editOrder(){
+  editOrder(Record){
     this.isEdit = true;
+      console.log(Record.sku);
+      this.id = Record.id;
+      this.orderNo = Record.sku;
+      this.customerNo = Record.name;
+      this.product = Record.price;
+      this.qnt = Record.price;
+      this.price = Record.price;
+      this.status = Record.price;
+  
+  
+  
+  
+      console.log(this.id);
+      console.log(this.price);
+      // Record.editSku = Record.sku;
+      // Record.editprice = Record.price;
+      // Record.editcategory = Record.category;
+      // Record.editdescription = Record.description;
+    
   }
 
   cancel(){

@@ -32,6 +32,10 @@ export class ProductService {
     this.fireservices.doc('product/' + id).update(record);
   }
 
+  deleteProduct(recordId){
+    this.fireservices.doc('product/' + recordId).delete();
+  }
+
 
 
 

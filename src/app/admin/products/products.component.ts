@@ -33,6 +33,8 @@ export class ProductsComponent implements OnInit {
           sku: e.payload.doc.data()['sku'],
           Productname: e.payload.doc.data()['name'],
           price: e.payload.doc.data()['price'],
+          category : e.payload.doc.data()['category'],
+          description : e.payload.doc.data()['description'],
         };
 
       })
@@ -64,15 +66,20 @@ export class ProductsComponent implements OnInit {
 
   EditItem(Record)
   {
-    console.log(Record.sku);
+    console.log(Record.category);
     this.isedit = true; 
     this.id = Record.id;
     this.sku = Record.sku;
-    this.name = Record.name;
+    this.Productname = Record.Productname;
     this.price = Record.price;
+    this.category = Record.category;
+    this.description = Record.description;
 
     console.log(this.id);
     console.log(this.price);
+    console.log(this.Productname);
+    console.log(this.category);
+    
     // Record.editSku = Record.sku;
     // Record.editprice = Record.price;
     // Record.editcategory = Record.category;
@@ -83,20 +90,31 @@ export class ProductsComponent implements OnInit {
   cancel()
   {
     this.isedit = false;
-    this.sku = "";
-    this.name = "";
-    this.price = null;
+    this.clearData();
   }
 
   updateRecord(){
     let record = {};
     record['sku'] = this.sku;
-    console.log(this.sku);
+    record['name'] = this.Productname;
+    record['price'] = this.price;
+    record['category'] = this.category;
+    record['description'] = this.description;
     this.productservice.update_items(this.id,record);
     this.isedit =false;
+    this.clearData();
+  }
+
+  clearData(){
     this.sku = "";
     this.name = "";
     this.price = null;
+    this.category = "";
+    this.description = "";
+  }
+
+  deleteProduct(product_id){
+    this.productservice.deleteProduct(product_id);
   }
 
 }
