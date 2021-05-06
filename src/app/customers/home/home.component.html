@@ -1,1 +1,219 @@
-<p>home works!</p>
+<div class="container">
+    <div class="navbar">
+        <div class="logo">
+            <img src="/../../../assets/img/logo.png" width="125px">
+    
+        </div>
+        <nav>
+            <ul id="menuItem">
+                <li><a routerLink="/">Home</a></li>
+                <li><a routerLink="/products"  >Products</a></li>
+                <li><a routerLink="/abut">About</a></li>
+                <li><a routerLink="/login"  >Login</a></li>
+                <li><a routerLink="/sign"  >Sign In</a></li>
+            </ul>
+        </nav>
+        <a routerLink="/cart"><img src="../../../assets/img/cart.png" width="30px" height="30px"></a>
+        <img src="../../../assets/img/menu.png" class="menu-icon" onclick="menutoggle()"  width="30px" height="30px">
+    </div>
+</div>
+
+
+
+<div class="up">
+    <div class="container">
+        <div class="row">
+            <div class="col-2">
+                <h1>Give Your Workuot<br> A New Style!</h1>
+                <p>Success isn't always about greatness. It's about consistancy. Consistent<br> hard work gains
+                    Success. Greatness
+                    will come.</p>
+                <a routerLink="login" class="btn">Explore Now</a>
+            </div>
+            <div class="col-2">
+                <img src="/../../assets/img/7.png">
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- -----------featured categoties----------- -->
+
+<div class="categories">
+    <div class="small-container">
+        <div class="row">
+            <div class="col-3"><img src="../../../assets/img/headphone3.jpeg" alt=""></div>
+            <div class="col-3"><img src="../../../assets/img/w1.jpg" alt=""></div>
+            <div class="col-3"><img src="../../../assets/img/product10.jpg" alt=""></div>
+        </div>
+    </div>
+    
+</div>
+
+
+
+<!-- ------------featured product--------------->
+
+<div class="small-container"> 
+    <h2 class="tittle">Featured Products</h2>
+    <div class="row">
+        <div   *ngFor="let product of featured_product" class="col-4">
+            <img src="{{product.img}}" (click)="selectProduct(product.id)">
+            <h4>{{ product.id}}</h4>
+            
+            <div class="rating">
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star-o"></i>
+            </div>
+            <p>{{product.name}}</p>
+            
+        </div>
+    </div>
+    <!-- <div *ngFor ="let asd of product">
+        id: {{asd.id}}
+        
+    </div> -->
+
+    <!-- ----------latest Product---------->
+    <h2 class="tittle">Latest Products</h2>
+    <div class="row">
+        <div   *ngFor="let product of latest_product" class="col-4">
+            <img src="{{product.img}}" alt="" (click)="selectProduct(product.id)">
+            <h4>{{ product.product_name}}</h4>
+            <div class="rating">
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star-o"></i>
+            </div>
+            <p>{{product.price}}</p>
+        </div>
+    </div>
+</div>
+
+<!-- --------offer----------->
+<div class="offer">
+    <div class="small-container">
+        <div class="row">
+            <div class="col-2">
+                <img src="../../../assets/img/15.png" class="offer-img">
+            </div>
+            <div class="col-2">
+                <p>Exclusively Available on RedStore</p>
+                <h1>Smart 9</h1>
+                <small>It is a long established fact that a reader will be distracted by the readable content of
+                     a page when looking at<br>ss its layout. The point of using Lorem Ipsum </small><br>
+                <a routerLink="/cart" class="btn">Buy Now</a>     
+            </div>
+        </div>
+    </div>
+</div>
+    
+<!-- --------testimonial----? -->
+<div class="testimonial">
+    <div class="small-container">
+        <div class="row">
+            <div class="col-3">
+                <i class="fa fa-quote-left"></i>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla a ligula dapibus, ultricies neque quis, posuere eros. Donec a sapien ultricies, aliquam elit eu,
+                 tincidunt justo. Morbi eros neque, vehicula</p>
+                 <div class="rating">
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star-o"></i>
+                </div>
+                <img src="../../../assets/img/user-1.png" alt=""> 
+                <h3>Isuru Poorna</h3>
+            </div>
+            <div class="col-3">
+                <i class="fa fa-quote-left"></i>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla a ligula dapibus, ultricies neque quis, posuere eros. Donec a sapien ultricies, aliquam elit eu,
+                 tincidunt justo. Morbi eros neque, vehicula</p>
+                 <div class="rating">
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star-o"></i>
+                </div>
+                <img src="../../../assets/img/user-2.png" alt=""> 
+                <h3>Pasindu Chathura</h3>
+            </div>
+            <div class="col-3">
+                <i class="fa fa-quote-left"></i>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla a ligula dapibus, ultricies neque quis, posuere eros. Donec a sapien ultricies, aliquam elit eu,
+                 tincidunt justo. Morbi eros neque, vehicula</p>
+                 <div class="rating">
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star-o"></i>
+                </div>
+                <img src="../../../assets/img/user-3.png" alt=""> 
+                <h3>Sachintha Sandaruvan</h3>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- -----------brands--------------? -->
+
+<div class="brands">
+    <div class="small-container">
+        <div class="row">
+            <div class="col-5"><img src="../../../assets/img/logo-coca-cola.png" alt=""></div>
+            <div class="col-5"><img src="../../../assets/img/logo-godrej.png" alt=""></div>
+            <div class="col-5"><img src="../../../assets/img/logo-oppo.png" alt=""></div>
+            <div class="col-5"><img src="../../../assets/img/logo-paypal.png" alt=""></div>
+            <div class="col-5"><img src="../../../assets/img/logo-philips.png" alt=""></div>
+        </div>
+    </div>
+</div>
+
+<!-- -----footer------>
+
+<div class="footer">
+    <div class="container">
+        <div class="row">
+            <div class="footer-col-1">
+                <h3>Downlord Our App</h3>
+                <p>Downlord App for Android and iso mobile phone</p>
+                <div class="app-logo">
+                    <img src="../../../assets/img/play-store.png">
+                    <img src="../../../assets/img/app-store.png">
+                </div>
+            </div>
+            <div class="footer-col-2">
+                <img src="../../../assets/img/logo-white.png">
+                <p>Our Purpose Is To Sustainably Make the Pleasure and Benefits of Sports Accessible to the many.</p>
+            </div>
+            <div class="footer-col-3">
+                <h3>useful Links</h3>
+                <ul>
+                    <li>Coupons</li>
+                    <li>Blog Posts</li>
+                    <li>Return policy</li>
+                    <li>Join Affiliate</li>
+                </ul>
+            </div>
+            <div class="footer-col-4">
+                <h3>Follow us</h3>
+                <ul>
+                    <li>Facebook</li>
+                    <li>Twitter</li>
+                    <li>Instagram</li>
+                    <li>YouTube</li>
+                </ul>
+            </div>
+        </div>
+        <hr>
+        <p class="copy">Copyright 2020 @Ravind</p>
+    </div>
+</div>

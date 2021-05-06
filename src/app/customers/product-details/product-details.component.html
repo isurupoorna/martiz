@@ -1,1 +1,73 @@
-<p>product-details works!</p>
+<!-- ------singale product details--------->
+
+<div class="small-container single-product">
+    <div class="row" >
+        <div class="col-2">
+            <img src="/../../assets/img/1.jpg" width="100%" id="ProductImg">
+
+            <div class="small-img-row">
+                <div class="small-img-col">
+                    <img src="/../../assets/img/2.jpg" width="100%" class="small-img">
+                </div>
+                <div class="small-img-col">
+                    <img src="/../../assets/img/3.jpg" width="100%" class="small-img">
+                </div>
+                <div class="small-img-col">
+                    <img src="/../../assets/img/4.jpg" width="100%" class="small-img">
+                </div>
+                <div class="small-img-col">
+                    <img src="/../../assets/img/6.jpg" width="100%" class="small-img">
+                </div>
+            </div>
+        </div>
+        <div class="col-2">
+            <p>
+                Electronic / Mobile
+            </p>
+            <h1>Mobile 4n</h1>
+            <h4>$99.99</h4>
+            <select>
+                <option>Red</option>
+                <option>Blue</option>
+                <option>Black</option>
+                <option>Gold</option>
+            </select>
+            <input type="number" value="1">
+            <!-- <a routerLink="/cart" class="btn"> -->
+                <h3>Product Details <i class="fa fa-indent"></i></h3>
+                <br>
+                <p>It is a long established fact that a reader will be distracted by the readable content of a
+                    page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal
+                    distribution of letters...
+                </p>
+            <!-- </a> -->
+            <a routerLink="/cart" class="btn" (click)="goFire()">Add to Cart</a>
+            <!-- <a routerLink="/cart" (click)="addCart(product)">adc</a> -->
+        </div>
+    </div>
+</div>
+
+<!-- ------------tittle---------- -->
+<div class="small-container">
+    <div class="row row-2">
+        <h2>Related Product</h2>
+        <p>View More</p>
+    </div>
+</div>
+
+<div class="small-container">
+    <div class="row">
+        <div class="col-4" *ngFor="let product of relatedProduct">
+            <img src="{{product.img}}" (click)="selectProduct(product.id)">
+            <h4>{{ product.product_name}}</h4>
+            <div class="ratings">
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star-o"></i>
+            </div>
+            <p>{{product.price}}</p>
+        </div>
+    </div>
+</div>
