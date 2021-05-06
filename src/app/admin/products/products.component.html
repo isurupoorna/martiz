@@ -86,6 +86,7 @@
                                         <th>SKU</th>
                                         <th>Name</th>
                                         <th>Price</th>
+                                        <th>Catogory</th>
                                         <th>Action</th>
                                     </tr>
                                 </thead>
@@ -94,6 +95,7 @@
                                         <td>{{ item.sku }}</td>
                                         <td>{{ item.Productname }}</td>
                                         <td>{{ item.price }}</td>
+                                        <td>{{ item.category }}</td>
                                         <td><a (click)="EditItem(item)"><button class="btn btn-primary" type="button">Edit</button></a></td>                                        
                                     </tr>
                         
@@ -123,7 +125,7 @@
                             <input class="form-control" type="text" name="editsku" required [(ngModel)]="sku" ></div>
                         <div class="col">
                             <div class="form-group"><label>Name</label></div>
-                            <input class="form-control" type="text" name="name" required [(ngModel)]="name"></div>
+                            <input class="form-control" type="text" name="editname" required [(ngModel)]="Productname"></div>
                     </div>
                     <div class="form-row">
                         <div class="col">
@@ -131,12 +133,12 @@
                             <input class="form-control" type="text" name="price" required [(ngModel)]="price"></div>
                         <div class="col">
                             <div class="form-group"><label>Catogory</label></div>
-                            <input class="form-control" type="text" name="category" required [(ngModel)]="editcategory"></div>
+                            <input class="form-control" type="text" name="category" required [(ngModel)]="category"></div>
                     </div>
                     <div class="form-row">
                         <div class="col">
                             <div class="form-group"><label>Description</label>
-                                <textarea class="form-control" name="description" required [(ngModel)]="editdescription"></textarea></div>
+                                <textarea class="form-control" name="description" required [(ngModel)]="description"></textarea></div>
                         </div>
                     </div>
                     <div class="form-row">
