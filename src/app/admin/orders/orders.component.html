@@ -1,0 +1,124 @@
+<app-header></app-header>
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>Untitled</title>
+</head>
+
+<body>
+    <div class="container" style="margin-top: 10px;">
+
+        <div class="row">
+            <div class="col">
+                <h3>Manage Orders</h3>
+                <hr>
+            </div>
+        </div>
+
+        <div class="div" *ngIf = "isEdit" id="editOrder">
+            <div class="row">
+                <div class="container">
+                    <div class="row">
+                        <div class="col">
+                            <h3>Edit Order</h3>
+                            <hr>
+                        </div>
+                        
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <form>
+                                <div class="form-row">
+                                    <div class="col">
+                                        <div class="form-group"><label>Order Number</label></div><input class="form-control" type="text"></div>
+                                    <div class="col">
+                                        <div class="form-group"><label>Customer Number</label></div><input class="form-control" type="text"></div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="col">
+                                        <div class="form-group"><label>Order Number</label></div><input class="form-control" type="text"></div>
+                                    <div class="col">
+                                        <div class="form-group"><label>Customer Number</label></div><input class="form-control" type="text"></div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <form>
+                                <div class="form-row">
+                                    <div class="col">
+                                        <div class="form-group"><label>Address</label></div><input class="form-control" type="text"></div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <form>
+                                <div class="form-row">
+                                    <div class="col"><label>Amount</label><input class="form-control" type="text"></div>
+                                    <div class="col"><label>Status</label>
+                                        <div class="dropdown"><button class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-expanded="false" type="button" style="width: 339px;background-color: rgb(182,210,240);color: rgb(11,11,11);">Dropdown </button>
+                                            <div class="dropdown-menu"
+                                                role="menu"><a class="dropdown-item" role="presentation" href="#">First Item</a><a class="dropdown-item" role="presentation" href="#">Second Item</a><a class="dropdown-item" role="presentation" href="#">Third Item</a></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="form-row mt-1">
+                        <div class="col"><button class="btn btn-primary" type="button" (click)="updateOrder()" >Save Product</button></div>
+                        <div class="col"><button class="btn btn-primary" type="button" (click)="cancel()">Cancel</button></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="row" id="oderDetails">
+            <div class="col">
+                <h3>Order Details</h3>
+                <hr>
+            </div>
+            
+        </div>
+        <div class="row">
+            <div class="col">
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Order No</th>
+                                <th>Customer No</th>
+                                <th>Product</th>
+                                <th>Quantity</th>
+                                <th>Amount</th>
+                                <th>Status</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor = "let item of order">
+                                <td>{{ item.orderNo }}</td>
+                                <td>{{ item.customerNo }}</td>
+                                <td>{{ item.product }}</td>
+                                <td>{{ item.qnt }}</td>
+                                <td>{{ item.price }}</td>
+                                <td>{{ item.status }}</td>
+                                <td><button class="btn btn-primary" type="button" (click)="editOrder()">Edit</button></td>
+                            </tr>
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
