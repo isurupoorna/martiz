@@ -13,5 +13,9 @@ export class OrderService {
     return this.fireservices.collection('orders').snapshotChanges();
   }
 
+  update_order(id,record){
+    this.fireservices.doc('orders/' + id).update(record);
+  }
+
 }
 

@@ -13,7 +13,7 @@ export class OrdersComponent implements OnInit {
   customerNo: number;
   product: string;
   qnt: number;
-  price: number;
+  amount: number;
   status: string;
 
   isEdit: boolean = false;
@@ -28,7 +28,7 @@ export class OrdersComponent implements OnInit {
           orderNo: e.payload.doc.data()['orderNo'],
           customerNo: e.payload.doc.data()['customerNo'],
           product: e.payload.doc.data()['product'],
-          price: e.payload.doc.data()['amount'],
+          amount: e.payload.doc.data()['amount'],
           qnt: e.payload.doc.data()['qnt'],
           ststus: e.payload.doc.data()['status'],
         };
@@ -42,18 +42,16 @@ export class OrdersComponent implements OnInit {
     this.isEdit = true;
       console.log(Record.sku);
       this.id = Record.id;
-      this.orderNo = Record.sku;
-      this.customerNo = Record.name;
-      this.product = Record.price;
-      this.qnt = Record.price;
-      this.price = Record.price;
-      this.status = Record.price;
-  
-  
+      this.orderNo = Record.orderNo;
+      this.customerNo = Record.customerNo;
+      this.product = Record.product;
+      this.qnt = Record.qnt;
+      this.amount = Record.amount;
+      this.status = Record.status;
   
   
       console.log(this.id);
-      console.log(this.price);
+      console.log(this.amount);
       // Record.editSku = Record.sku;
       // Record.editprice = Record.price;
       // Record.editcategory = Record.category;
@@ -66,7 +64,20 @@ export class OrdersComponent implements OnInit {
   }
 
   updateOrder(){
-    
+    let record = {};
+    record['amount'] = this.amount;
+    this.orderservise.update_order(this.id,record);
+    this.isEdit = false;
+    this.clearData();
+  }
+
+  clearData(){
+    this.orderNo = null;
+    this.customerNo = null;
+    this.product = "";
+    this.qnt = null;
+    this.amount = null;
+    this.status = "";
   }
   
 

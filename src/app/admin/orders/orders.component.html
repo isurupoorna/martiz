@@ -18,7 +18,7 @@
             </div>
         </div>
 
-        <div class="div" *ngIf = "isEdit" id="editOrder">
+        <div class="div" *ngIf="isEdit" id="editOrder">
             <div class="row">
                 <div class="container">
                     <div class="row">
@@ -26,55 +26,66 @@
                             <h3>Edit Order</h3>
                             <hr>
                         </div>
-                        
+
                     </div>
                     <div class="row">
                         <div class="col">
                             <form>
                                 <div class="form-row">
                                     <div class="col">
-                                        <div class="form-group"><label>Order Number</label></div><input class="form-control" type="text"></div>
+                                        <div class="form-group"><label>Order Number</label></div><input
+                                            class="form-control" type="text" name="orderNo" [(ngModel)]="orderNo">
+                                    </div>
                                     <div class="col">
-                                        <div class="form-group"><label>Customer Number</label></div><input class="form-control" type="text"></div>
+                                        <div class="form-group"><label>Customer Number</label></div><input
+                                            class="form-control" type="text" name="customerNo" [(ngModel)]="customerNo">
+                                    </div>
                                 </div>
                                 <div class="form-row">
                                     <div class="col">
-                                        <div class="form-group"><label>Product</label></div><input class="form-control" type="text"></div>
+                                        <div class="form-group"><label>Product</label></div><input class="form-control"
+                                            type="text" name="product" [(ngModel)]="product">
+                                    </div>
                                     <div class="col">
-                                        <div class="form-group"><label>Quantity</label></div><input class="form-control" type="text"></div>
+                                        <div class="form-group"><label>Quantity</label></div><input class="form-control"
+                                            type="text" name="qnt" [(ngModel)]="qnt">
+                                    </div>
                                 </div>
-                            </form>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col">
-                            <form>
+
                                 <div class="form-row">
                                     <div class="col">
-                                        <div class="form-group"><label>Address</label></div><input class="form-control" type="text"></div>
+                                        <div class="form-group"><label>Address</label></div><input class="form-control"
+                                            type="text" name="address">
+                                    </div>
                                 </div>
-                            </form>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col">
-                            <form>
+
                                 <div class="form-row">
-                                    <div class="col"><label>Amount</label><input class="form-control" type="text"></div>
+                                    <div class="col"><label>Amount</label><input class="form-control" type="text" name="amount" [(ngModel)]="amount"></div>
                                     <div class="col"><label>Status</label>
-                                        <div class="dropdown"><button class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-expanded="false" type="button" style="width: 339px;background-color: rgb(182,210,240);color: rgb(11,11,11);">Dropdown </button>
-                                            <div class="dropdown-menu"
-                                                role="menu"><a class="dropdown-item" role="presentation" href="#">First Item</a><a class="dropdown-item" role="presentation" href="#">Second Item</a><a class="dropdown-item" role="presentation" href="#">Third Item</a></div>
+                                        <div class="dropdown"><button class="btn btn-primary dropdown-toggle"
+                                                data-toggle="dropdown" aria-expanded="false" type="button"
+                                                style="width: 339px;background-color: rgb(182,210,240);color: rgb(11,11,11);">Dropdown
+                                            </button>
+                                            <div class="dropdown-menu" role="menu"><a class="dropdown-item"
+                                                    role="presentation" href="#">First Item</a><a class="dropdown-item"
+                                                    role="presentation" href="#">Second Item</a><a class="dropdown-item"
+                                                    role="presentation" href="#">Third Item</a></div>
                                         </div>
                                     </div>
                                 </div>
+
+                                <div class="form-row mt-1">
+                                    <div class="col"><button class="btn btn-primary" type="button" (click)="updateOrder()">Save
+                                            Product</button></div>
+                                    <div class="col"><button class="btn btn-primary" type="button"
+                                            (click)="cancel()">Cancel</button></div>
+                                </div>
+
+
                             </form>
                         </div>
                     </div>
-                    <div class="form-row mt-1">
-                        <div class="col"><button class="btn btn-primary" type="button" (click)="updateOrder()" >Save Product</button></div>
-                        <div class="col"><button class="btn btn-primary" type="button" (click)="cancel()">Cancel</button></div>
-                    </div>
+
                 </div>
             </div>
         </div>
@@ -85,7 +96,7 @@
                 <h3>Order Details</h3>
                 <hr>
             </div>
-            
+
         </div>
         <div class="row">
             <div class="col">
@@ -103,14 +114,15 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr *ngFor = "let item of order">
+                            <tr *ngFor="let item of order">
                                 <td>{{ item.orderNo }}</td>
                                 <td>{{ item.customerNo }}</td>
                                 <td>{{ item.product }}</td>
                                 <td>{{ item.qnt }}</td>
-                                <td>{{ item.price }}</td>
+                                <td>{{ item.amount }}</td>
                                 <td>{{ item.status }}</td>
-                                <td><button class="btn btn-primary" type="button" (click)="editOrder()">Edit</button></td>
+                                <td><button class="btn btn-primary" type="button" (click)="editOrder(item)">Edit</button>
+                                </td>
                             </tr>
 
                         </tbody>
