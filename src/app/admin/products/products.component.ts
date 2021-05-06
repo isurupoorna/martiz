@@ -113,4 +113,8 @@ export class ProductsComponent implements OnInit {
     this.description = "";
   }
 
+  deleteProduct(product_id){
+    this.productservice.deleteProduct(product_id);
+  }
+
 }
