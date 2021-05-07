@@ -18,6 +18,9 @@ export class ProductsComponent implements OnInit {
   category:string;
   description:string;
   message:string;
+  tagName:string;
+
+  //var tags:string[];
 
   isedit:boolean = false;
 
@@ -43,12 +46,25 @@ export class ProductsComponent implements OnInit {
   }
 
   createItem(){
+
+    let tags = [];
+    this.tagName = this.name;
+
+    for (let index = 0; index < this.tagName.length; index++) {
+      var splitted = this.tagName.substr(0, index+1);
+      tags[index] = splitted;
+    }
+
+    console.log(tags);
+ 
     let Record = {};
     Record['sku'] = this.sku;
     Record['name'] = this.name;
     Record['price'] = this.price;
     Record['category'] = this.category;
     Record['description'] = this.description;
+    Record['tags'] = tags;
+
 
     this.productservice.create_NewItem(Record).then(res => {
       this.sku = "";
