@@ -20,8 +20,6 @@ export class ProductsComponent implements OnInit {
   message:string;
   tagName:string;
 
-  //var tags:string[];
-
   isedit:boolean = false;
 
   constructor(public productservice:ProductService , 

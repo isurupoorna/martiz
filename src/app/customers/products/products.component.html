@@ -1,7 +1,5 @@
 <app-header></app-header>
 
-
-
  <div class="small-container"> 
     <div class="row row-2">
         <h2>All Products</h2>
@@ -13,7 +11,7 @@
         </select>
     </div>
     <div class="row row-2">
-        <div   *ngFor="let product of featured_product" class="col-4">
+        <div *ngFor="let product of featured_product" class="col-4">
             <img src="{{product.img}}" alt="" (click)="selectProduct(product.id)">
             <h4>{{ product.product_name}}</h4>
             <div class="rating">
@@ -33,6 +31,5 @@
         <span>&#8594;</span>
     </div>
 </div>
-
 
 <app-footer></app-footer>

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-
+import { ProductService } from "../service/product.service";
 @Component({
   selector: 'app-products',
   templateUrl: './products.component.html',
@@ -8,9 +8,34 @@ import { Router } from '@angular/router';
 })
 export class ProductsComponent implements OnInit {
 
-  constructor(private router: Router) { }
+  product:any;
+  id: string;
+  sku:string;
+  name:string;
+  Productname:string;
+  price:number;
+  category:string;
+  description:string;
+  message:string;
+  tagName:string;
+
+  constructor(private router: Router,public productservice:ProductService) { }
 
   ngOnInit(): void {
+    this.productservice.get_AllItems().subscribe(data =>{
+      this.product = data.map(e => {
+        return {
+          id: e.payload.doc.id,
+          sku: e.payload.doc.data()['sku'],
+          Productname: e.payload.doc.data()['name'],
+          price: e.payload.doc.data()['price'],
+          category : e.payload.doc.data()['category'],
+          description : e.payload.doc.data()['description'],
+        };
+
+      })
+      console.log(this.product);
+    })
   }
 
   selectProduct(){

@@ -7,6 +7,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
+  product:any;
+  id: string;
+  sku:string;
+  name:string;
+  Productname:string;
+  price:number;
+  category:string;
+  description:string;
+  message:string;
+  tagName:string;
+
+
   constructor() { }
 
   ngOnInit(): void {

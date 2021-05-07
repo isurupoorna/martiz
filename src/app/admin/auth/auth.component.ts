@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 
 @Component({
@@ -14,6 +15,12 @@ export class AuthComponent implements OnInit {
   }
 
   onLoginClick(){
+    this.router.navigate(['admin/dashboard']);
+  }
+
+  onSubmit(form: NgForm){
+    console.log(form.value);
+    form.reset();
     this.router.navigate(['admin/dashboard']);
   }
 
