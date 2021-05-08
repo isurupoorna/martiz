@@ -11,17 +11,17 @@
         </select>
     </div>
     <div class="row row-2">
-        <div *ngFor="let product of featured_product" class="col-4">
-            <img src="{{product.img}}" alt="" (click)="selectProduct(product.id)">
-            <h4>{{ product.product_name}}</h4>
+        <div *ngFor="let item of product" class="col-4">
+            <img src="{{product.img}}" alt="" (click)="selectProduct(item.id)">
+            <h4>{{ item.Productname}}</h4>
             <div class="rating">
                 <i class="fa fa-star"></i>
                 <i class="fa fa-star"></i>
                 <i class="fa fa-star"></i>
                 <i class="fa fa-star"></i>
                 <i class="fa fa-star-o"></i>
-            </div>
-            <p>{{product.price}}</p>
+            </div> 
+            <p>{{item.price}}</p>
         </div>
     </div>
     <div class="page-btn">
