@@ -12,7 +12,7 @@
     </div>
     <div class="row row-2">
         <div *ngFor="let item of product" class="col-4">
-            <img src="{{product.img}}" alt="" (click)="selectProduct(item.id)">
+            <img src="{{item.url}}" alt="" (click)="selectProduct(item.id)">
             <h4>{{ item.Productname}}</h4>
             <div class="rating">
                 <i class="fa fa-star"></i>
