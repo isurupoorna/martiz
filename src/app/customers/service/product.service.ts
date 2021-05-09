@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
+import { snapshotChanges } from '@angular/fire/database';
 import { AngularFirestore } from "@angular/fire/firestore";
+import { asapScheduler } from 'rxjs';
 
 
 @Injectable({
@@ -12,4 +14,13 @@ export class ProductService {
   get_AllItems(){
     return this.fireservices.collection('product').snapshotChanges();
   }
+
+  get_singleProduct(id){
+    return this.fireservices.collection('product').doc(id).ref.get().then((doc) => {
+      var i = doc.data();
+      
+    }
+    )
+  }
+
 }

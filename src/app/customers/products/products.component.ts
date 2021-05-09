@@ -40,9 +40,9 @@ export class ProductsComponent implements OnInit {
     })
   }
 
-  selectProduct(){
+  selectProduct(id){
     
-    this.router.navigate(['/productdetails']).then();
+    this.router.navigate(['/productdetails',id]).then();
   }
 
 
