@@ -18,31 +18,39 @@
             </div>
             <div class="form-row">
                 <div class="col">
-                    <div class="form-group"><label>User Id</label></div><input class="form-control" type="text"></div>
+                    <div class="form-group"><label>User Id</label></div>
+                    <input class="form-control" type="text" name="userId" [(ngModel)]="userId" disabled></div>
                 <div class="col">
-                    <div class="form-group"><label>Gender</label></div><input class="form-control" type="text"></div>
+                    <div class="form-group"><label>Name</label></div>
+                    <input class="form-control" type="text" name="userName" [(ngModel)]="userName" disabled></div>
             </div>
             <div class="form-row">
                 <div class="col">
-                    <div class="form-group"><label>Address</label></div><input class="form-control" type="text"></div>
+                    <div class="form-group"><label>Address</label></div>
+                    <input class="form-control" type="text" name="userAddress" [(ngModel)]="userAddress" disabled></div>
             </div>
             <div class="form-row">
                 <div class="col">
-                    <div class="form-group"><label>phone</label></div><input class="form-control" type="text"></div>
+                    <div class="form-group"><label>phone</label></div>
+                    <input class="form-control" type="text" name="userPhone" [(ngModel)]="userPhone" disabled></div>
                 <div class="col">
-                    <div class="form-group"><label>DOB</label></div><input class="form-control" type="text"></div>
+                    <div class="form-group"><label>DOB</label></div>
+                    <input class="form-control" type="text" name="dob"></div>
             </div>
             <div class="form-row">
                 <div class="col"><label>Status</label>
-                    <div class="dropdown"><button class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-expanded="false" type="button" style="width: 340px;background-color: rgb(203,222,242);color: rgb(25,25,25);">Dropdown </button>
-                        <div class="dropdown-menu" role="menu"><a class="dropdown-item" role="presentation" href="#">First Item</a><a class="dropdown-item" role="presentation" href="#">Second Item</a><a class="dropdown-item" role="presentation" href="#">Third Item</a></div>
+                    <div class="dropdown">
+                        <select (change)="selectValue($event)">
+                            <option value="active">Active</option>
+                            <option value="deactive">Dective</option>
+                        </select>
                     </div>
                 </div>
                 <div class="col"></div>
             </div>
             <div class="form-row">
                 <div class="col" style="margin-top: 10px;">
-                    <button class="btn btn-primary" type="button">Save</button>
+                    <button class="btn btn-primary" type="button" (click)="updateOrder()">Save</button>
                     <button class="btn btn-primary" type="button" (click)="cancel()" style="margin-left: 34px;">Cancel</button></div>
             </div>
         </form>
@@ -68,7 +76,7 @@
                             <td>{{item.userName}}</td>
                             <td>{{item.userAddress}}</td>
                             <td>{{item.userPhone}}</td>
-                            <td><button class="btn btn-primary" type="button" (click)="editUser()">Edit</button></td>
+                            <td><button class="btn btn-primary" type="button" (click)="editUser(item)">Edit</button></td>
                         </tr>
                     </tbody>
                 </table>

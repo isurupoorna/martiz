@@ -15,7 +15,7 @@ export class UsersComponent implements OnInit {
   userName : string;
   userAddress : string;
   userPhone : string;
-  status: number;
+  status: string;
   
   isEdit: boolean = false;
 
@@ -40,12 +40,28 @@ export class UsersComponent implements OnInit {
     })
   }
 
-  editUser(){
+  editUser(Record){
     this.isEdit = true;
+    this.id = Record.id;
+    this.userId = Record.userId;
+    this.userName = Record.userName;
+    this.userAddress = Record.userAddress;
+    this.userPhone = Record.userPhone;
+    this.status = Record.status;
+
+  }
+
+  updateOrder(){
+
   }
 
   cancel(){
     this.isEdit = false;
+  }
+
+  selectValue(event:any){
+    this.status = event.target.value;
+    console.log(this.status);
   }
 
 }

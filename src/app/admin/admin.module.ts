@@ -13,11 +13,22 @@ import { OrdersComponent } from './orders/orders.component';
 import { UsersComponent } from './users/users.component';
 import { FormsModule } from '@angular/forms';
 
+
 import { ProductService } from "./service/product.service";
 import { EditProductComponent } from './products/edit-product/edit-product.component';
 
 @NgModule({
-  declarations: [AdminComponent, AuthComponent, DashboardComponent, HeaderComponent, ProductsComponent, AddProductComponent, OrdersComponent, UsersComponent, EditProductComponent],
+  declarations: [
+    AdminComponent,
+     AuthComponent, 
+     DashboardComponent, 
+     HeaderComponent, 
+     ProductsComponent, 
+     AddProductComponent, 
+     OrdersComponent, 
+     UsersComponent, 
+     EditProductComponent,
+    ],
   imports: [
     CommonModule,
     FormsModule,

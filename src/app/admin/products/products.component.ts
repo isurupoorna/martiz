@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ProductService } from '../service/product.service';
-
+import { AngularFireStorage } from '@angular/fire/storage';
+import {Observable} from 'rxjs';
+import { finalize } from 'rxjs/operators';
 @Component({
   selector: 'app-products',
   templateUrl: './products.component.html',
@@ -19,23 +21,30 @@ export class ProductsComponent implements OnInit {
   description:string;
   message:string;
   tagName:string;
+  url:string;
 
   isedit:boolean = false;
 
+  uploadPercent: Observable<number>;
+  downloadURL: Observable<string>;
+  profileUrl: Observable<string | null>;
+
   constructor(public productservice:ProductService , 
               private router: Router,
-              private rought: ActivatedRoute) { }
+              private rought: ActivatedRoute,
+              private storage: AngularFireStorage) { }
 
   ngOnInit(): void {
     this.productservice.get_allProduct().subscribe(data =>{
       this.product = data.map(e => {
         return {
           id: e.payload.doc.id,
-          sku: e.payload.doc.data()['sku'],
+          sku: e.payload.doc.data()['sku'], 
           Productname: e.payload.doc.data()['name'],
           price: e.payload.doc.data()['price'],
           category : e.payload.doc.data()['category'],
           description : e.payload.doc.data()['description'],
+          url: e.payload.doc.data()['url']
         };
 
       })
@@ -44,6 +53,7 @@ export class ProductsComponent implements OnInit {
   }
 
   createItem(){
+    console.log(this.url);
 
     let tags = [];
     this.tagName = this.name;
@@ -62,6 +72,7 @@ export class ProductsComponent implements OnInit {
     Record['category'] = this.category;
     Record['description'] = this.description;
     Record['tags'] = tags;
+    Record['url'] = this.url;
 
 
     this.productservice.create_NewItem(Record).then(res => {
@@ -93,11 +104,6 @@ export class ProductsComponent implements OnInit {
     console.log(this.price);
     console.log(this.Productname);
     console.log(this.category);
-    
-    // Record.editSku = Record.sku;
-    // Record.editprice = Record.price;
-    // Record.editcategory = Record.category;
-    // Record.editdescription = Record.description;
 
   }
 
@@ -129,6 +135,28 @@ export class ProductsComponent implements OnInit {
 
   deleteProduct(product_id){
     this.productservice.deleteProduct(product_id);
+  }
+
+  chooseFile(event){
+    const file = event.target.files[0];
+    const filePath = 'ona ekak';
+    const fileRef = this.storage.ref(filePath);
+    const task = this.storage.upload(filePath, file);
+
+    
+    task.snapshotChanges().pipe(
+      finalize(() => {
+        fileRef.getDownloadURL().subscribe((downloadURL) => {
+          
+          
+          this.url = downloadURL;
+          console.log(this.url);
+          //fileUpload.name = fileUpload.file.name;
+         // this.saveFileData(fileUpload);
+        });
+      })
+    ).subscribe();
+    
   }
 
 }
