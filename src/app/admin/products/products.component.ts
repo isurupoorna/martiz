@@ -139,7 +139,8 @@ export class ProductsComponent implements OnInit {
 
   chooseFile(event){
     const file = event.target.files[0];
-    const filePath = 'ona ekak'+Date.now;
+    const filePath = file.name + Math.random().toString(36).substring(2);
+    console.log(filePath);
     const fileRef = this.storage.ref(filePath);
     const task = this.storage.upload(filePath, file);
 
