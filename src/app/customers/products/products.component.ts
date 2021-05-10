@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ProductService } from "../service/product.service";
+import { AuthService } from "../service/auth.service";
+
+
 @Component({
   selector: 'app-products',
   templateUrl: './products.component.html',
@@ -20,7 +23,9 @@ export class ProductsComponent implements OnInit {
   tagName:string;
   url:string;
 
-  constructor(private router: Router,public productservice:ProductService) { }
+  islogin:boolean;
+
+  constructor(private router: Router,public productservice:ProductService,private authservise:AuthService) { }
 
   ngOnInit(): void {
     this.productservice.get_AllItems().subscribe(data =>{
@@ -38,6 +43,9 @@ export class ProductsComponent implements OnInit {
       })
       console.log(this.product);
     })
+
+    this.islogin = this.authservise.isLoggedIn;
+    console.log('yes' + this.islogin);
   }
 
   selectProduct(id){

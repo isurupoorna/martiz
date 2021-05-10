@@ -11,13 +11,16 @@ import { CartComponent } from './cart/cart.component';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { ProductDetailsComponent } from './product-details/product-details.component';
+import { FormsModule, ReactiveFormsModule }   from '@angular/forms';
 
 
 @NgModule({
   declarations: [CustomersComponent, HomeComponent, ProductsComponent, LoginComponent, SigninComponent, CartComponent, HeaderComponent, FooterComponent, ProductDetailsComponent],
   imports: [
     CommonModule,
-    CustomersRoutingModule
+    CustomersRoutingModule,
+    FormsModule,
+    ReactiveFormsModule
   ]
 })
 export class CustomersModule { }

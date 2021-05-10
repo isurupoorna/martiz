@@ -14,11 +14,12 @@
                     <div class="form-btn">
                         <span>Sign In</span>   
                     </div>
-                    <form id="regForm">
-                        <input type="text" placeholder="Username">
-                        <input type="email" placeholder="Email">
-                        <input type="password" placeholder="password">
-                        <a routerLink="/"><button type="submit" class="btn">Register</button></a>
+                    <form id="regForm" #authForm="ngForm" (ngSubmit)="onSubmit(authForm)">
+                        <input type="text" placeholder="Username" ngModel name="username" required>
+                        <input type="email" placeholder="Email" ngModel name="email" required>
+                        <input type="password" placeholder="password" ngModel name="password" required minlength="6">
+                        <input type="password" placeholder="Re-Enter password" ngModel name="repassword" required minlength="6">
+                        <button type="submit" class="btn" [disabled] ="!authForm.valid">Register</button>
                     </form>
                 </div>
             </div>

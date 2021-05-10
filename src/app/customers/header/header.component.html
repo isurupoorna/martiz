@@ -9,8 +9,9 @@
                 <li><a routerLink="/">Home</a></li>
                 <li><a routerLink="/products"  >Products</a></li>
                 <li><a routerLink="/abut">About</a></li>
-                <li><a routerLink="/login"  >Login</a></li>
-                <li><a routerLink="/sign"  >Sign In</a></li>
+                <li *ngIf="!islogin"><a routerLink="/login"  >Login</a></li>
+                <li *ngIf="!islogin"><a routerLink="/sign"  >Sign In</a></li>
+                <li *ngIf="islogin"><a routerLink="/sign"  >Log Out</a></li>
             </ul>
         </nav>
         <a routerLink="/cart"><img src="../../../assets/img/cart.png" width="30px" height="30px"></a>

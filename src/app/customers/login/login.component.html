@@ -14,10 +14,10 @@
                     <div class="form-btn">
                         <span>Login</span>
                     </div>
-                    <form id="loginForm">
-                        <input type="text" placeholder="Username">
-                        <input type="password" placeholder="password">
-                        <a routerLink="/"><button type="submit" class="btn">Login</button></a>
+                    <form #authForm="ngForm" (ngSubmit)="onSubmit(authForm)">
+                        <input type="email" placeholder="Username" id="email" name="email" ngModel required>
+                        <input type="password" placeholder="password" id="password" name="password" ngModel required minlength="6">
+                        <button type="submit" class="btn" [disabled]="!authForm.valid">Login</button>
                         <a href="">Forgot password</a>
                     </form>
                 </div>
