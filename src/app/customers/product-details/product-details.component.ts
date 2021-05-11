@@ -3,7 +3,7 @@ import { AngularFirestore } from '@angular/fire/firestore';
 import { ActivatedRoute } from '@angular/router';
 import { ProductService } from "../service/product.service";
 import { CartService } from "../service/cart.service";
-import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
+import { AuthService } from "../service/auth.service";
 
 @Component({
   selector: 'app-product-details',
@@ -31,12 +31,15 @@ export class ProductDetailsComponent implements OnInit {
 
   userId:string;
 
+  islogin:boolean;
+
   prod = {};
 
   constructor(private _Activatedroute: ActivatedRoute,
     public productservice: ProductService,
     private fireservices:AngularFirestore,
-    private cartservice:CartService
+    private cartservice:CartService,
+    private authservise:AuthService
   ) { }
 
   ngOnInit(): void {
@@ -51,6 +54,8 @@ export class ProductDetailsComponent implements OnInit {
       this.url = doc.data()['url']
       console.log(this.name+this.price);
     })
+
+    this.islogin = this.authservise.isLoggedIn;
 
     // this.product = this.productservice.get_singleProduct(this.id);
     // console.log(this.product);
@@ -82,11 +87,18 @@ export class ProductDetailsComponent implements OnInit {
   }
 
   addToCart(recod){
-    this.cartservice.add_cart(recod).then(res => {
-      console.log(res);
-    }).catch(error => {
-      console.log(error);
-    })
+
+    if(this.islogin){
+      this.cartservice.add_cart(recod).then(res => {
+        console.log(res);
+      }).catch(error => {
+        console.log(error);
+      })
+    }else{
+      alert("Login First");
+    }
+
+
   }
 
 
