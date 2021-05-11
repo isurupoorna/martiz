@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { ActivatedRoute } from '@angular/router';
 import { ProductService } from "../service/product.service";
-
+import { CartService } from "../service/cart.service";
+import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 
 @Component({
   selector: 'app-product-details',
@@ -24,10 +25,18 @@ export class ProductDetailsComponent implements OnInit {
   tagName:string;
   url:string;
 
+  qnt:number;
+  color:string;
+  tot:number = 0;
+
+  userId:string;
+
+  prod = {};
 
   constructor(private _Activatedroute: ActivatedRoute,
     public productservice: ProductService,
-    private fireservices:AngularFirestore
+    private fireservices:AngularFirestore,
+    private cartservice:CartService
   ) { }
 
   ngOnInit(): void {
@@ -46,15 +55,39 @@ export class ProductDetailsComponent implements OnInit {
     // this.product = this.productservice.get_singleProduct(this.id);
     // console.log(this.product);
 
-    
-
-
-
   }
 
-  goFire() { }
+  goFire() { 
+    this.prod['id'] = this.id;
+    this.prod['name'] = this.name;
+    this.prod['qnt'] = this.qnt;
+    this.prod['color'] = this.color;
+    this.tot = this.qnt * this.price;
+    this.prod['tot'] = this.tot;
+    this.prod['userId'] = localStorage.getItem('userId');
+    
+    console.log(this.prod);
+    this.addToCart(this.prod);
+  }
+
+  qntChange(event:any){
+    console.log(event.target.value);
+    this.qnt = event.target.value;
+  }
 
 
+  selectValue(event:any){
+    this.color = event.target.value;
+    console.log(this.color);
+  }
+
+  addToCart(recod){
+    this.cartservice.add_cart(recod).then(res => {
+      console.log(res);
+    }).catch(error => {
+      console.log(error);
+    })
+  }
 
 
 

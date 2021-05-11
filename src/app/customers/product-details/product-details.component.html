@@ -30,13 +30,13 @@
                 </p>
                 <h1>{{this.name}}</h1>
                 <h4>{{this.price}}</h4>
-                <select>
+                <select (change)="selectValue($event)">
                     <option>Red</option>
                     <option>Blue</option>
                     <option>Black</option>
                     <option>Gold</option>
                 </select>
-                <input type="qnt" value="1" min="1" name="qnt">
+                <input type="number" value="1" min="1" name="qnt" (change)="qntChange($event)">
                 <!-- <a routerLink="/cart" class="btn"> -->
                     <h3>Product Details <i class="fa fa-indent"></i></h3>
                     <br>
@@ -44,7 +44,8 @@
                         {{this.description}}
                     </p>
                 <!-- </a> -->
-                <a routerLink="/cart" class="btn" (click)="goFire()">Add to Cart</a>
+                <button type="button" class="btn" (click)="goFire()">Add to Cart</button>
+                <!-- <a routerLink="/cart" class="btn" (click)="goFire()">Add to Cart</a> -->
                 <!-- <a routerLink="/cart" (click)="addCart(product)">adc</a> -->
             </div>
         </div>

@@ -3,6 +3,10 @@ import { Router } from "@angular/router";
 import { AngularFireAuth } from "@angular/fire/auth";
 import { AngularFirestore,AngularFirestoreDocument } from "@angular/fire/firestore";
 import { User } from "../shared/user";
+//import * as firebase from 'firebase';
+//import { auth } from 'firebase/app';
+import firebase from 'firebase/app'
+
 
 @Injectable({
   providedIn: 'root'
@@ -10,6 +14,8 @@ import { User } from "../shared/user";
 export class AuthService {
 
   userData: any;
+  myuser:any
+  name:string;
 
   constructor(
     public afAuth: AngularFireAuth,
@@ -20,6 +26,8 @@ export class AuthService {
         if (user) {
           this.userData = user;
           console.log(this.userData);
+          var id = this.userData.uid;
+          localStorage.setItem('userId',id);
           localStorage.setItem('user', JSON.stringify(this.userData));
           JSON.parse(localStorage.getItem('user'));
         } else {
@@ -76,8 +84,5 @@ export class AuthService {
       this.router.navigate(['sign-in']);
     })
   }
-
-
-
 
 }
