@@ -12,10 +12,11 @@ import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { ProductDetailsComponent } from './product-details/product-details.component';
 import { FormsModule, ReactiveFormsModule }   from '@angular/forms';
+import { AboutUsComponent } from './about-us/about-us.component';
 
 
 @NgModule({
-  declarations: [CustomersComponent, HomeComponent, ProductsComponent, LoginComponent, SigninComponent, CartComponent, HeaderComponent, FooterComponent, ProductDetailsComponent],
+  declarations: [CustomersComponent, HomeComponent, ProductsComponent, LoginComponent, SigninComponent, CartComponent, HeaderComponent, FooterComponent, ProductDetailsComponent, AboutUsComponent],
   imports: [
     CommonModule,
     CustomersRoutingModule,

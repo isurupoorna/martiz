@@ -1,5 +1,5 @@
 <div class="container">
-    <div class="navbar navbar-light" style="background-color: #e3f2fd;">
+    <div class="navbar">
         <div class="logo">
             <img src="/../../../assets/img/cover.png" width="125px">
     
@@ -8,7 +8,7 @@
             <ul id="menuItem">
                 <li><a routerLink="/">Home</a></li>
                 <li><a routerLink="/products"  >Products</a></li>
-                <li><a routerLink="/abut">About</a></li>
+                <li><a routerLink="/about">About</a></li>
                 <li *ngIf="!islogin"><a routerLink="/login"  >Login</a></li>
                 <li *ngIf="!islogin"><a routerLink="/sign"  >Sign In</a></li>
                 <li *ngIf="islogin"><a routerLink="/sign"  >Log Out</a></li>
