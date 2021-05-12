@@ -11,11 +11,12 @@ export class OrdersComponent implements OnInit {
   id:string;
   orderNo: number;
   customerNo: number;
-  product: string;
+  product: any;
   qnt: number;
   amount: number;
   status: string;
-
+  title:string;
+ a:any;
   isEdit: boolean = false;
 
   constructor(public orderservise:OrderService) { }
@@ -26,11 +27,14 @@ export class OrdersComponent implements OnInit {
         return {
           id: e.payload.doc.id,
           orderNo: e.payload.doc.data()['orderNo'],
+         // title: e.payload.doc.data()['products.id'],
           customerNo: e.payload.doc.data()['coustemerId'],
-          product: e.payload.doc.data()['products.qnt'],
+          product: e.payload.doc.data()['products'],
           amount: e.payload.doc.data()['totalPrice'],
           qnt: e.payload.doc.data()['quentity'],
           status: e.payload.doc.data()['staus'],
+         // title : this.product['id']
+
         };
 
       })

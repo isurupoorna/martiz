@@ -34,7 +34,7 @@
                                 <div class="form-row">
                                     <div class="col">
                                         <div class="form-group"><label>Order Number</label></div><input
-                                            class="form-control" type="text" name="orderNo" [(ngModel)]="orderNo" disabled>
+                                            class="form-control" type="text" name="orderNo" [(ngModel)]="id" disabled>
                                     </div>
                                     <div class="col">
                                         <div class="form-group"><label>Customer Number</label></div><input
@@ -42,10 +42,10 @@
                                     </div>
                                 </div>
                                 <div class="form-row">
-                                    <div class="col">
+                                    <!-- <div class="col">
                                         <div class="form-group"><label>Product</label></div><input class="form-control"
                                             type="text" name="product" [(ngModel)]="product" disabled>
-                                    </div>
+                                    </div> -->
                                     <div class="col">
                                         <div class="form-group"><label>Quantity</label></div><input class="form-control"
                                             type="text" name="qnt" [(ngModel)]="qnt" disabled>
@@ -106,7 +106,7 @@
                             <tr>
                                 <th>Order No</th>
                                 <th>Customer No</th>
-                                <th>Product</th>
+                               
                                 <th>Quantity</th>
                                 <th>Amount</th>
                                 <th>Status</th>
@@ -117,7 +117,7 @@
                             <tr *ngFor="let item of order">
                                 <td>{{ item.id }}</td>
                                 <td>{{ item.customerNo }}</td>
-                                <td>{{ item.product }}</td>
+                               
                                 <td>{{ item.qnt }}</td>
                                 <td>{{ item.amount }}</td>
                                 <td>{{ item.status }}</td>
