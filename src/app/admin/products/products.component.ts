@@ -23,6 +23,9 @@ export class ProductsComponent implements OnInit {
   tagName:string;
   url:string;
 
+  colors: Array<number> = [4283216596,4294967295,4293467747];
+  
+
   isedit:boolean = false;
 
   uploadPercent: Observable<number>;
@@ -40,11 +43,11 @@ export class ProductsComponent implements OnInit {
         return {
           id: e.payload.doc.id,
           sku: e.payload.doc.data()['sku'], 
-          Productname: e.payload.doc.data()['name'],
+          Productname: e.payload.doc.data()['title'],
           price: e.payload.doc.data()['price'],
           category : e.payload.doc.data()['category'],
           description : e.payload.doc.data()['description'],
-          url: e.payload.doc.data()['url']
+          url: e.payload.doc.data()['image']
         };
 
       })
@@ -67,13 +70,14 @@ export class ProductsComponent implements OnInit {
  
     let Record = {};
     Record['sku'] = this.sku;
-    Record['name'] = this.name;
+    Record['title'] = this.name;
     Record['price'] = this.price;
     Record['category'] = this.category;
     Record['description'] = this.description;
-    Record['tags'] = tags;
-    Record['url'] = this.url;
-
+    Record['searchTag'] = tags;
+    Record['image'] = this.url;
+    Record['colors'] = this.colors;
+    
 
     this.productservice.create_NewItem(Record).then(res => {
       this.sku = "";
@@ -116,7 +120,7 @@ export class ProductsComponent implements OnInit {
   updateRecord(){
     let record = {};
     record['sku'] = this.sku;
-    record['name'] = this.Productname;
+    record['title'] = this.Productname;
     record['price'] = this.price;
     record['category'] = this.category;
     record['description'] = this.description;

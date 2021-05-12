@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-
+import { Router } from '@angular/router';
+import { AuthService } from '../service/auth.service';
+import { ProductService } from "../service/product.service";
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -19,9 +21,32 @@ export class HomeComponent implements OnInit {
   tagName:string;
 
 
-  constructor() { }
+  constructor(private router: Router,public productservice:ProductService,private authservise:AuthService) { }
 
   ngOnInit(): void {
+    this.productservice.get_AllItems().subscribe(data =>{
+      this.product = data.map(e => {
+        return {
+          id: e.payload.doc.id,
+          sku: e.payload.doc.data()['sku'],
+          Productname: e.payload.doc.data()['title'],
+          price: e.payload.doc.data()['price'],
+          category : e.payload.doc.data()['category'],
+          description : e.payload.doc.data()['description'],
+          image: e.payload.doc.data()['image'],
+        };
+
+      })
+      // console.log(this.product);
+
+      // for(var i = 0; i<this.product.length; i++){
+      //   console.log(i);
+      // }
+
+    })
+
+    //this.islogin = this.authservise.isLoggedIn;
+    //console.log('yes' + this.islogin);
   }
 
   

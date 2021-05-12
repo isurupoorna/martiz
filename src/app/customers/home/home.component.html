@@ -39,7 +39,7 @@
 <!-- ------------featured product--------------->
 
 <div class="small-container"> 
-    <h2 class="tittle">Featured Products</h2>
+    <!-- <h2 class="tittle">Featured Products</h2>
     <div class="row">
         <div   *ngFor="let product of featured_product" class="col-4">
             <img src="{{product.img}}" (click)="selectProduct(product.id)">
@@ -55,7 +55,7 @@
             <p>{{product.name}}</p>
             
         </div>
-    </div>
+    </div> -->
     <!-- <div *ngFor ="let asd of product">
         id: {{asd.id}}
         
@@ -64,9 +64,9 @@
     <!-- ----------latest Product---------->
     <h2 class="tittle">Latest Products</h2>
     <div class="row">
-        <div   *ngFor="let product of latest_product" class="col-4">
-            <img src="{{product.img}}" alt="" (click)="selectProduct(product.id)">
-            <h4>{{ product.product_name}}</h4>
+        <div   *ngFor="let item of product" class="col-4">
+            <img src="{{item.image}}" alt="" (click)="selectProduct(product.id)">
+            <h4>{{ item.Productname}}</h4>
             <div class="rating">
                 <i class="fa fa-star"></i>
                 <i class="fa fa-star"></i>
@@ -74,7 +74,7 @@
                 <i class="fa fa-star"></i>
                 <i class="fa fa-star-o"></i>
             </div>
-            <p>{{product.price}}</p>
+            <p>{{item.price}}</p>
         </div>
     </div>
 </div>

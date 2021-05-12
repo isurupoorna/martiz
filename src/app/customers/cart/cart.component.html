@@ -14,11 +14,11 @@
             <tr *ngFor="let item of cart">
                 <td>
                     <div class="cart-info">
-                        <img src="" alt="">
+                        <img src="{{item.image}}" alt="">
                         <div>
-                            <p>{{item.name}}</p>
+                            <p>{{item.pname}}</p>
                             <small>{{item.price}}</small><br>
-                            <a href="">Remove</a>
+                            <a (click)="deleteProduct(item.id)">Remove</a>
                         </div>
                     </div>
                 </td>
@@ -35,7 +35,7 @@
                     <td>${{subTotal}}</td>
                 </tr>
                 <tr>
-                    <td colspan="2"><button class="btn btn-primary" (click)="checkout(20)">check out</button></td>
+                    <td colspan="2"><button class="btn btn-primary" (click)="payNow()">check out</button></td>
                 </tr>
                <!-- <tr>
                     <td>Total</td>

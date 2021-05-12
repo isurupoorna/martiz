@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
+import { AuthService } from 'src/app/customers/service/auth.service';
 
 @Component({
   selector: 'app-auth',
@@ -9,7 +10,7 @@ import { Router } from '@angular/router';
 })
 export class AuthComponent implements OnInit {
 
-  constructor(private router: Router) { }
+  constructor(private router: Router,private authservise:AuthService) { }
 
   ngOnInit(): void {
   }
@@ -19,9 +20,12 @@ export class AuthComponent implements OnInit {
   }
 
   onSubmit(form: NgForm){
-    console.log(form.value);
+    if(this.authservise.SignIn(form.value['email'],form.value['password']) && form.value['email']=="admin@martiz.com" ){
+      this.router.navigate(['admin/dashboard']).then();
+    }else{
+      alert("Only admin can loggin!");
+    }
     form.reset();
-    this.router.navigate(['admin/dashboard']);
   }
 
 }

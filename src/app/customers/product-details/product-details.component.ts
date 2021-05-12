@@ -25,7 +25,7 @@ export class ProductDetailsComponent implements OnInit {
   tagName:string;
   url:string;
 
-  qnt:number;
+  qnt:number = 1;
   color:string;
   tot:number = 0;
 
@@ -47,12 +47,12 @@ export class ProductDetailsComponent implements OnInit {
     console.log(this.id);
 
     var data = this.fireservices.collection('product').doc(this.id).ref.get().then((doc) => {
-      this.name  = doc.data()['name'],
+      this.name  = doc.data()['title'],
       this.price = doc.data()['price'],
       this.description = doc.data()['description'],
       this.category = doc.data()['category'],
-      this.url = doc.data()['url']
-      console.log(this.name+this.price);
+      this.url = doc.data()['image']
+     // console.log(this.name+this.price);
     })
 
     this.islogin = this.authservise.isLoggedIn;
@@ -69,9 +69,10 @@ export class ProductDetailsComponent implements OnInit {
     this.prod['color'] = this.color;
     this.tot = this.qnt * this.price;
     this.prod['tot'] = this.tot;
+    this.prod['image'] = this.url;
     this.prod['userId'] = localStorage.getItem('userId');
     
-    console.log(this.prod);
+   // console.log(this.prod);
     this.addToCart(this.prod);
   }
 

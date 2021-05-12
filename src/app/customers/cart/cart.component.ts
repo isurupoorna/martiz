@@ -12,14 +12,26 @@ import { AngularFirestore } from '@angular/fire/firestore';
 export class CartComponent implements OnInit {
 
   logedUser: string;
-  id: string;
+  id: string = '';
   cart: any;
-  name: string;
-  qnt: number;
-  tot: number;
+  pname: string;
+  qnt: number = 1;
+  tot: number = 1;
+  image:string;
   subTotal:number = 0;
 
   handler:any = null;
+
+  products = {
+    color:4283216596,
+    id: this.id,
+    qnt: this.qnt,
+    singlePrice: this.tot,
+  };
+
+  a: Array<any> = [4283216596,this.id,this.qnt,this.tot];
+
+  public now: Date = new Date();
 
   constructor(private authservise: AuthService, private fireservices: AngularFirestore, private cartservice: CartService) { }
 
@@ -37,24 +49,16 @@ export class CartComponent implements OnInit {
           return {
             id: e.payload.doc.id,
             //sku: e.payload.doc.data()['sku'],
-            name: e.payload.doc.data()['name'],
+            pname: e.payload.doc.data()['name'],
             qnt: e.payload.doc.data()['qnt'],
             tot: e.payload.doc.data()['tot'],
+            image: e.payload.doc.data()['image']
           };
   
         })
-       // console.log(this.cart.length);
-       var noOfItems = this.cart.length
-      // this.noOfItems = this.cart.lenght;
       
-      })
-      // if( this.noOfItems > 0){
-      //   console.log(this.cart.length);
-      //   for(var i; i < this.cart.length; i++){
-      //     this.subTotal = this.subTotal + this.cart[0].price;
-      //   } 
-      // }    
-      console.log(this.subTotal);  
+      })    
+
     }else{
 
     }
@@ -68,6 +72,16 @@ export class CartComponent implements OnInit {
 
   }
 
+  payNow(){
+    if(this.cart.length > 0){
+      this.checkout(this.subTotal);
+    }else{
+      alert("select products");
+    }
+    
+    //
+  }
+
   checkout(amount:any){
     var handler = (<any>window).StripeCheckout.configure({
       key: 'pk_test_51IpchrBpXVFaHkwCSr2x9dBZ28hHFBTGF4VoeYpqc0vc6z6nWlJWF7HcajxOILDiPC3PEwgx013QMUhJqkjJvH7j00Ni7iTKOo',
@@ -75,32 +89,55 @@ export class CartComponent implements OnInit {
       token: function (token: any) {
         // You can access the token ID with `token.id`.
         // Get the token ID to your server-side code for use.
-        console.log(token)
+        console.log(token);
+        
         alert('Token Created!!');
+        if(token){
+          this.cartservice.deleteProduct(this.id);
+        }
+        
       }
     });
  
     handler.open({
       name: 'Demo Site',
       description: '2 widgets',
-      amount: amount * 100
+      amount: this.tot * 100
     });
 
+    var i = this.createItem();
+    
   }
 
   getTot(){
     console.log(this.cart)
   }
 
-  // invokeStripe(){
-  //   if(!window.document.getElementById("stripe-script")){
-  //     const script = window.document.createElement('script');
-  //     script.id = 'stripe-stripe';
-  //     script.type = 'text/javascript';
-  //     script.src = "";
-  //     window.document.body.appendChild(script);
-  //   }
-  // }
+  deleteProduct(id){
+    this.cartservice.deleteProduct(id);
+    //alert(id);
+  }
+
+  createItem(){
+    console.log(this.pname);
+    let Record = {}; 
+    Record['orderTime'] = this.now;
+    Record['coustemerId'] = this.logedUser;
+    //Record['name'] = this.pname;
+    Record['quentity'] = this.qnt;
+    Record['totalPrice'] = this.tot;
+    Record['products'] = this.products;
+  
+    this.cartservice.create_order(Record).then(res => {
+      return true;
+  
+    }).catch(error => {
+      console.log(error);
+    })
+  }
+
+
+
 
   loadStripe() {
      
@@ -111,7 +148,7 @@ export class CartComponent implements OnInit {
       s.src = "https://checkout.stripe.com/checkout.js";
       s.onload = () => {
         this.handler = (<any>window).StripeCheckout.configure({
-          key: 'pk_test_51HxRkiCumzEESdU2Z1FzfCVAJyiVHyHifo0GeCMAyzHPFme6v6ahYeYbQPpD9BvXbAacO2yFQ8ETlKjo4pkHSHSh00qKzqUVK9',
+          key: 'pk_test_51IqAjRCXb3URDkrxXy3T8raJ6RqT8BD3xJVzCpbd54ghfScHsDlWG8Nz2XvVy5nG6CDkeYhkk2zwRUALe4XNqyaD00YhLyzHWd',
           locale: 'auto',
           token: function (token: any) {
             // You can access the token ID with `token.id`.

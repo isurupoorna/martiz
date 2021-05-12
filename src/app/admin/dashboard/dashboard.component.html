@@ -28,7 +28,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-6 col-xl-3 mb-4">
+                        <!-- <div class="col-md-6 col-xl-3 mb-4">
                             <div class="card shadow border-left-success py-2">
                                 <div class="card-body">
                                     <div class="row align-items-center no-gutters">
@@ -40,8 +40,8 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="col-md-6 col-xl-3 mb-4">
+                        </div> -->
+                        <!-- <div class="col-md-6 col-xl-3 mb-4">
                             <div class="card shadow border-left-info py-2">
                                 <div class="card-body">
                                     <div class="row align-items-center no-gutters">
@@ -62,8 +62,8 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="col-md-6 col-xl-3 mb-4">
+                        </div> -->
+                        <!-- <div class="col-md-6 col-xl-3 mb-4">
                             <div class="card shadow border-left-warning py-2">
                                 <div class="card-body">
                                     <div class="row align-items-center no-gutters">
@@ -75,14 +75,14 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </div> -->
                     </div>
                     <div class="row">
                         <div class="col">
                             <h4>Order Details</h4>
                         </div>
                     </div>
-                    <div class="row">
+                    <!-- <div class="row">
                         <div class="col" style="margin: 0;background-color: #ffffff;">
                             <div class="table-responsive" style="background-color: #ffffff;">
                                 <table class="table">
@@ -114,10 +114,135 @@
                                 </table>
                             </div>
                         </div>
+                    </div> -->
+                </div>
+            </div>
+        </div>
+        <a class="border rounded d-inline scroll-to-top" href="#page-top"><i class="fas fa-angle-up"></i></a></div>
+
+
+        <div class="container" style="margin-top: 10px;">
+
+            <div class="row">
+                <!-- <div class="col">
+                    <h3>Manage Orders</h3>
+                    <hr>
+                </div> -->
+            </div>
+    
+            <div class="div" *ngIf="isEdit" id="editOrder">
+                <div class="row">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col">
+                                <h3>Edit Order</h3>
+                                <hr>
+                            </div>
+    
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <form>
+                                    <div class="form-row">
+                                        <div class="col">
+                                            <div class="form-group"><label>Order Number</label></div><input
+                                                class="form-control" type="text" name="orderNo" [(ngModel)]="orderNo" disabled>
+                                        </div>
+                                        <div class="col">
+                                            <div class="form-group"><label>Customer Number</label></div><input
+                                                class="form-control" type="text" name="customerNo" [(ngModel)]="customerNo" disabled>
+                                        </div>
+                                    </div>
+                                    <div class="form-row">
+                                        <div class="col">
+                                            <div class="form-group"><label>Product</label></div><input class="form-control"
+                                                type="text" name="product" [(ngModel)]="product" disabled>
+                                        </div>
+                                        <div class="col">
+                                            <div class="form-group"><label>Quantity</label></div><input class="form-control"
+                                                type="text" name="qnt" [(ngModel)]="qnt" disabled>
+                                        </div>
+                                    </div>
+    
+                                    <div class="form-row">
+                                        <div class="col">
+                                            <div class="form-group"><label>Address</label></div><input class="form-control"
+                                                type="text" name="address">
+                                        </div>
+                                    </div>
+    
+                                    <div class="form-row">
+                                        <div class="col"><label>Amount</label><input class="form-control" type="text" name="amount" [(ngModel)]="amount"></div>
+                                        <div class="col"><label>Status</label>
+                                            <div class="dropdown"><button class="btn btn-primary dropdown-toggle"
+                                                    data-toggle="dropdown" aria-expanded="false" type="button"
+                                                    style="width: 339px;background-color: rgb(182,210,240);color: rgb(11,11,11);">Dropdown
+                                                </button>
+                                                <div class="dropdown-menu" role="menu"><a class="dropdown-item"
+                                                        role="presentation" href="#">First Item</a><a class="dropdown-item"
+                                                        role="presentation" href="#">Second Item</a><a class="dropdown-item"
+                                                        role="presentation" href="#">Third Item</a></div>
+                                            </div>
+                                        </div>
+                                    </div>
+    
+                                    <div class="form-row mt-1">
+                                        <div class="col"><button class="btn btn-primary" type="button" (click)="updateOrder()">Save
+                                                Product</button></div>
+                                        <div class="col"><button class="btn btn-primary" type="button"
+                                                (click)="cancel()">Cancel</button></div>
+                                    </div>
+    
+    
+                                </form>
+                            </div>
+                        </div>
+    
                     </div>
                 </div>
             </div>
-        </div><a class="border rounded d-inline scroll-to-top" href="#page-top"><i class="fas fa-angle-up"></i></a></div>
+    
+    
+            <div class="row" id="oderDetails">
+                <!-- <div class="col">
+                    <h3>Order Details</h3>
+                    <hr>
+                </div> -->
+    
+            </div>
+            <div class="row">
+                <div class="col">
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Order No</th>
+                                    <th>Customer No</th>
+                                    <th>Product</th>
+                                    <th>Quantity</th>
+                                    <th>Amount</th>
+                                    <th>Status</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let item of order">
+                                    <td>{{ item.orderNo }}</td>
+                                    <td>{{ item.customerNo }}</td>
+                                    <td>{{ item.product }}</td>
+                                    <td>{{ item.qnt }}</td>
+                                    <td>{{ item.amount }}</td>
+                                    <td>{{ item.status }}</td>
+                                    <td><button class="btn btn-primary" type="button" (click)="editOrder(item)">Edit</button>
+                                    </td>
+                                </tr>
+    
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
 
 </body>
 

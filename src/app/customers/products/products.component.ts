@@ -21,7 +21,7 @@ export class ProductsComponent implements OnInit {
   description:string;
   message:string;
   tagName:string;
-  url:string;
+  image:string;
 
   islogin:boolean;
 
@@ -33,24 +33,24 @@ export class ProductsComponent implements OnInit {
         return {
           id: e.payload.doc.id,
           sku: e.payload.doc.data()['sku'],
-          Productname: e.payload.doc.data()['name'],
+          Productname: e.payload.doc.data()['title'],
           price: e.payload.doc.data()['price'],
           category : e.payload.doc.data()['category'],
           description : e.payload.doc.data()['description'],
-          url: e.payload.doc.data()['url'],
+          image: e.payload.doc.data()['image'],
         };
 
       })
-      console.log(this.product);
+      //console.log(this.product);
 
-      for(var i = 0; i<this.product.length; i++){
-        console.log(i);
-      }
+      // for(var i = 0; i<this.product.length; i++){
+      //   console.log(i);
+      // }
 
     })
 
     this.islogin = this.authservise.isLoggedIn;
-    console.log('yes' + this.islogin);
+    //console.log('yes' + this.islogin);
   }
 
   selectProduct(id){ 

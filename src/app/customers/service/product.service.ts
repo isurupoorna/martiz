@@ -15,6 +15,10 @@ export class ProductService {
     return this.fireservices.collection('product').snapshotChanges();
   }
 
+  get_latest(){
+    return this.fireservices.collection('product').ref.limit(5);
+  }
+
   get_singleProduct(id){
     return this.fireservices.collection('product').doc(id).ref.get().then((doc) => {
       var i = doc.data();

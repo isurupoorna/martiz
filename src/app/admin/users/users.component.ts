@@ -13,7 +13,7 @@ export class UsersComponent implements OnInit {
   id : string;
   userId : number;
   userName : string;
-  userAddress : string;
+  userAddress = {};
   userPhone : string;
   status: string;
   
@@ -26,10 +26,10 @@ export class UsersComponent implements OnInit {
       this.user = data.map(e => {
         return {
           id: e.payload.doc.id,
-          userId: e.payload.doc.data()['userId'],
-          userName: e.payload.doc.data()['userName'],
-          userAddress: e.payload.doc.data()['userAddress'],
-          userPhone: e.payload.doc.data()['userPhone'],
+          userId: e.payload.doc.id,
+          userName: e.payload.doc.data()['fName'],
+          userAddress: e.payload.doc.data()['address'],
+          //userPhone: e.payload.doc.data()['userPhone'],
           status: e.payload.doc.data()['status'],
         };
 

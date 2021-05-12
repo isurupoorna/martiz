@@ -26,11 +26,11 @@ export class OrdersComponent implements OnInit {
         return {
           id: e.payload.doc.id,
           orderNo: e.payload.doc.data()['orderNo'],
-          customerNo: e.payload.doc.data()['customerNo'],
-          product: e.payload.doc.data()['product'],
-          amount: e.payload.doc.data()['amount'],
-          qnt: e.payload.doc.data()['qnt'],
-          ststus: e.payload.doc.data()['status'],
+          customerNo: e.payload.doc.data()['coustemerId'],
+          product: e.payload.doc.data()['products.qnt'],
+          amount: e.payload.doc.data()['totalPrice'],
+          qnt: e.payload.doc.data()['quentity'],
+          status: e.payload.doc.data()['staus'],
         };
 
       })

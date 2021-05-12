@@ -17,4 +17,12 @@ export class CartService {
     return this.fireservices.collection('cart').snapshotChanges();
   }
 
+  deleteProduct(recordId){
+    this.fireservices.doc('cart/' + recordId).delete();
+  }
+
+  create_order(Record){
+    return this.fireservices.collection('orders').add(Record);
+  }
+
 }
