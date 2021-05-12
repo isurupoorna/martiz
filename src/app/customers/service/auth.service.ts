@@ -69,7 +69,7 @@ export class AuthService {
         });
         this.SetUserData(result.user);
       }).catch((error) => {
-        window.alert(error.message)
+        alert(error.message)
       })
   }
 

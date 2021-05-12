@@ -17,6 +17,7 @@ export class CartComponent implements OnInit {
   name: string;
   qnt: number;
   tot: number;
+  subTotal:number = 0;
 
   handler:any = null;
 
@@ -42,12 +43,26 @@ export class CartComponent implements OnInit {
           };
   
         })
-        console.log(this.cart);
+       // console.log(this.cart.length);
+       var noOfItems = this.cart.length
+      // this.noOfItems = this.cart.lenght;
+      
       })
+      // if( this.noOfItems > 0){
+      //   console.log(this.cart.length);
+      //   for(var i; i < this.cart.length; i++){
+      //     this.subTotal = this.subTotal + this.cart[0].price;
+      //   } 
+      // }    
+      console.log(this.subTotal);  
+    }else{
+
     }
 
 
 
+
+    this.getTot();
     //this.invokeStripe();
     this.loadStripe();
 
@@ -71,6 +86,10 @@ export class CartComponent implements OnInit {
       amount: amount * 100
     });
 
+  }
+
+  getTot(){
+    console.log(this.cart)
   }
 
   // invokeStripe(){

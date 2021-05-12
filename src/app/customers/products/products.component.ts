@@ -53,8 +53,7 @@ export class ProductsComponent implements OnInit {
     console.log('yes' + this.islogin);
   }
 
-  selectProduct(id){
-    
+  selectProduct(id){ 
     this.router.navigate(['/productdetails',id]).then();
   }
 

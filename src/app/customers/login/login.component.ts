@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { AuthService } from "../service/auth.service";
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -8,14 +9,20 @@ import { AuthService } from "../service/auth.service";
 })
 export class LoginComponent implements OnInit {
 
-  constructor(private authservise:AuthService) { }
+  errorMessage:string = "";
+  error: {name:string, message:string} = {name: "" , message: ""};
+
+  constructor(private authservise:AuthService,private router: Router) { }
 
   ngOnInit(): void {
   }
 
 
   onSubmit(form: NgForm){
-    this.authservise.SignIn(form.value['email'],form.value['password'])
+    if(this.authservise.SignIn(form.value['email'],form.value['password'])){
+      this.router.navigate(['']).then();
+    }
+    
     form.reset();
   }
 

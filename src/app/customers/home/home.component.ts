@@ -24,6 +24,8 @@ export class HomeComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  
+
   featured_product = [
     {
       'product_name': 'Samsung S5',
