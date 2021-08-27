@@ -41,11 +41,11 @@ export class ProductsComponent implements OnInit {
         };
 
       })
-      //console.log(this.product);
+      console.log(this.product);
 
-      // for(var i = 0; i<this.product.length; i++){
-      //   console.log(i);
-      // }
+      for(var i = 0; i<this.product.length; i++){
+        console.log(i);
+      }
 
     })
 

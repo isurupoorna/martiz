@@ -64,12 +64,12 @@
                                     <div class="col"><label>Status</label>
                                         <div class="dropdown"><button class="btn btn-primary dropdown-toggle"
                                                 data-toggle="dropdown" aria-expanded="false" type="button"
-                                                style="width: 339px;background-color: rgb(182,210,240);color: rgb(11,11,11);">Dropdown
+                                                style="width: 339px;background-color: rgb(182,210,240);color: rgb(11,11,11);">Order Status
                                             </button>
                                             <div class="dropdown-menu" role="menu"><a class="dropdown-item"
-                                                    role="presentation" href="#">First Item</a><a class="dropdown-item"
-                                                    role="presentation" href="#">Second Item</a><a class="dropdown-item"
-                                                    role="presentation" href="#">Third Item</a></div>
+                                                    role="presentation" href="#">Pending</a><a class="dropdown-item"
+                                                    role="presentation" href="#">Shipped</a><a class="dropdown-item"
+                                                    role="presentation" href="#">Cancel</a></div>
                                         </div>
                                     </div>
                                 </div>
@@ -106,23 +106,25 @@
                             <tr>
                                 <th>Order No</th>
                                 <th>Customer No</th>
+                                <th>Product</th>
                                
-                                <th>Quantity</th>
                                 <th>Amount</th>
                                 <th>Status</th>
                                 <th>Action</th>
+                               
                             </tr>
                         </thead>
                         <tbody>
                             <tr *ngFor="let item of order">
                                 <td>{{ item.id }}</td>
                                 <td>{{ item.customerNo }}</td>
-                               
-                                <td>{{ item.qnt }}</td>
+                                <td *ngFor="let x of item.product" >{{ x.pname }} * {{x.qnt}} </td>
+                                
                                 <td>{{ item.amount }}</td>
                                 <td>{{ item.status }}</td>
                                 <td><button class="btn btn-primary" type="button" (click)="editOrder(item)">Edit</button>
                                 </td>
+                                
                             </tr>
 
                         </tbody>

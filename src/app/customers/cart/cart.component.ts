@@ -15,21 +15,20 @@ export class CartComponent implements OnInit {
   id: string = '';
   cart: any;
   pname: string;
-  qnt: number = 1;
-  tot: number = 1;
-  image:string;
+  qnt: number;
+  tot: number = 0 ;
   subTotal:number = 0;
 
-  handler:any = null;
+  image: string;
+  priceList: Array<number> = [];
 
-  products = {
-    color:4283216596,
-    id: this.id,
-    qnt: this.qnt,
-    singlePrice: this.tot,
-  };
+  handler: any = null;
 
-  a: Array<any> = [4283216596,this.id,this.qnt,this.tot];
+  products:any;
+ 
+
+  //aaa: Array<any> = [4283216596, this.id, this.qnt, 0];
+  mycart: object = {};
 
   public now: Date = new Date();
 
@@ -38,12 +37,12 @@ export class CartComponent implements OnInit {
   ngOnInit(): void {
 
     this.logedUser = localStorage.getItem('userId');
-    console.log(this.logedUser);
+    //console.log(this.logedUser);
 
     //  this.cart = this.fireservices.collection("cart", ref => ref.where('userId', '==', this.logedUser)).snapshotChanges();
     //  console.log(this.cart.data()['name']);
 
-    if(this.logedUser){
+    if (this.logedUser) {
       this.cartservice.get_cartItems().subscribe(data => {
         this.cart = data.map(e => {
           return {
@@ -54,35 +53,50 @@ export class CartComponent implements OnInit {
             tot: e.payload.doc.data()['tot'],
             image: e.payload.doc.data()['image']
           };
-  
-        })
-      
-      })    
+          
 
-    }else{
+        })
+        //console.log(this.cart);
+        console.log(this.cart);
+        
+       // this.subTotal.push(this.cart['tot']);
+        for (var i = 0; i < this.cart.length; i++) {
+          //console.log(this.cart[i].tot);
+          this.priceList.push(this.cart[i].tot);
+          this.subTotal = this.priceList[i]+this.subTotal;
+          console.log(this.priceList);
+        }
+        //console.log(this.subTotal);
+
+      })
+
+
+    } else {
 
     }
+        this.getTot();
+        this.loadStripe();
 
-
-
-
-    this.getTot();
-    //this.invokeStripe();
-    this.loadStripe();
+    this.products = {
+      color: 4283216596,
+      id: this.id,
+      qnt: 2,
+      singlePrice: 0,
+    };
 
   }
 
-  payNow(){
-    if(this.cart.length > 0){
+  payNow() {
+    if (this.cart.length > 0) {
       this.checkout(this.subTotal);
-    }else{
+    } else {
       alert("select products");
     }
-    
+
     //
   }
 
-  checkout(amount:any){
+  checkout(amount: any) {
     var handler = (<any>window).StripeCheckout.configure({
       key: 'pk_test_51IpchrBpXVFaHkwCSr2x9dBZ28hHFBTGF4VoeYpqc0vc6z6nWlJWF7HcajxOILDiPC3PEwgx013QMUhJqkjJvH7j00Ni7iTKOo',
       locale: 'auto',
@@ -90,47 +104,57 @@ export class CartComponent implements OnInit {
         // You can access the token ID with `token.id`.
         // Get the token ID to your server-side code for use.
         console.log(token);
-        
+
         alert('Token Created!!');
-        if(token){
-          this.cartservice.deleteProduct(this.id);
+        if (token) {
+          this.cart = null;
         }
-        
+
       }
     });
- 
+
     handler.open({
       name: 'Demo Site',
       description: '2 widgets',
-      amount: this.tot * 100
+      amount: this.tot,
     });
 
     var i = this.createItem();
-    
+
   }
 
-  getTot(){
-    console.log(this.cart)
+  getTot() {
+    console.log(this.priceList);
+    this.priceList.forEach(element => {
+      console.log(element[1]);
+    });
+    // for(var i = 0; i < 2; i++){
+    //   console.log(this.priceList[i]);
+    //   this.subTotal = this.subTotal + this.priceList[i];
+    // }
+    // console.log(this.subTotal);
   }
 
-  deleteProduct(id){
+  deleteProduct(id) {
     this.cartservice.deleteProduct(id);
     //alert(id);
   }
 
-  createItem(){
+  createItem() {
     console.log(this.pname);
-    let Record = {}; 
+    let Record = {};
     Record['orderTime'] = this.now;
     Record['coustemerId'] = this.logedUser;
+    Record['']
     //Record['name'] = this.pname;
-    Record['quentity'] = this.qnt;
-    Record['totalPrice'] = this.tot;
-    Record['products'] = this.products;
-  
+    //Record['quentity'] = this.qnt;
+    Record['totalPrice'] = this.subTotal;
+    Record['products'] = this.cart;
+    console.log(Record);
+
     this.cartservice.create_order(Record).then(res => {
       return true;
-  
+
     }).catch(error => {
       console.log(error);
     })
@@ -140,8 +164,8 @@ export class CartComponent implements OnInit {
 
 
   loadStripe() {
-     
-    if(!window.document.getElementById('stripe-script')) {
+
+    if (!window.document.getElementById('stripe-script')) {
       var s = window.document.createElement("script");
       s.id = "stripe-script";
       s.type = "text/javascript";
@@ -158,7 +182,7 @@ export class CartComponent implements OnInit {
           }
         });
       }
-       
+
       window.document.body.appendChild(s);
     }
   }

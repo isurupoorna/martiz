@@ -39,7 +39,7 @@ export class ProductDetailsComponent implements OnInit {
     public productservice: ProductService,
     private fireservices:AngularFirestore,
     private cartservice:CartService,
-    private authservise:AuthService
+    private authservise:AuthService,
   ) { }
 
   ngOnInit(): void {
@@ -90,6 +90,7 @@ export class ProductDetailsComponent implements OnInit {
   addToCart(recod){
 
     if(this.islogin){
+      localStorage.setItem('tot',recod['tot']);
       this.cartservice.add_cart(recod).then(res => {
         console.log(res);
       }).catch(error => {

@@ -13,7 +13,7 @@ export class UsersComponent implements OnInit {
   id : string;
   userId : number;
   userName : string;
-  userAddress = {};
+  userAddress = [];
   userPhone : string;
   status: string;
   
@@ -35,7 +35,7 @@ export class UsersComponent implements OnInit {
 
       })
       console.log(this.user);
-      console.log(this.user.id);
+      //console.log(this.user[0]);
       
     })
   }

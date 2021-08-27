@@ -11,7 +11,7 @@ export class OrdersComponent implements OnInit {
   id:string;
   orderNo: number;
   customerNo: number;
-  product: any;
+  product: Array<any> = [];
   qnt: number;
   amount: number;
   status: string;
@@ -78,7 +78,7 @@ export class OrdersComponent implements OnInit {
   clearData(){
     this.orderNo = null;
     this.customerNo = null;
-    this.product = "";
+    this.product = null;
     this.qnt = null;
     this.amount = null;
     this.status = "";
